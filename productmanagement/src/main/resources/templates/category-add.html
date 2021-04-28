@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <title>Add category</title>
+</head>
+<body>
+<h2>Add category</h2>
+<form th:action="@{/category-add}"  th:object="${newCategory}">
+  <label for="categoryId">Category ID:</label><br>
+  <input type="text" id="categoryId" name="categoryId" th:field="*{idCategory}"><br>
+  <label for="categoryName">CategoryName:</label><br>
+  <input type="text" id="categoryName" name="categoryName" th:field="*{categoryName}"><br>
+
+  <input type="submit" value="Add category">
+</form>
+</body>
+</html>

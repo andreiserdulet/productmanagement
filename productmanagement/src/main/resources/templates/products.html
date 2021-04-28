@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<a type="button" th:href="@{/add-product}">Add Product</a>
+
+<p th:text="${title}">
+<ul th:each="product: ${products}">
+    <p th:text="${product.productName}"></p>
+    <p th:text="${product.productDescription}"></p>
+    <p th:text="${product.price}"></p>
+    <p th:text="${product.currency}"></p>
+    <a type="button" th:href="@{/deleteById(id=${product.id})}">X</a>
+    <a type="button" th:href="@{/edit-product(id=${product.id})}">EDIT</a>
+
+</ul>
+
 </body>
 </html>

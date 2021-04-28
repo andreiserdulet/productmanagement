@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Edit product</title>
 </head>
 <body>
-$END$
+<h2>Edit author</h2>
+
+<form th:action="@{/product-edit}" th:object="${editProduct}">
+    <label for="id">Id:</label><br>
+    <input type="text" id="id" readonly name="id" th:field="*{id}"><br>
+    <label for="productName">Product:</label><br>
+    <input type="text" id="productName" name="productName" th:field="*{productName}"><br>
+    <label for="descriptionProduct">Description:</label><br>
+    <input type="text" id="descriptionProduct" name="descriptionProduct" th:field="*{productDescription}"><br><br>
+    <label for="price">Price:</label><br>
+    <input type="text" id="price" name="price" th:field="*{price}"><br><br>
+    <label for="currency">Last name:</label><br>
+    <input type="text" id="currency" name="currency" th:field="*{currency}"><br><br>
+    <input type="submit" value="Edit product">
+</form>
 </body>
 </html>

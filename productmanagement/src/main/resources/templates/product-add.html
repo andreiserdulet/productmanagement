@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Add product</title>
 </head>
 <body>
-$END$
+
+<h2>Add product</h2>
+
+<form th:action="@{/product-add}"  th:object="${newProduct}">
+    <label for="productName">Product:</label><br>
+    <input type="text" id="productName" name="productName" th:field="*{productName}"><br>
+    <label for="productDescription">Description:</label><br>
+    <input type="text" id="productDescription" name="productDescription" th:field="*{productDescription}"><br>
+    <label for="priceSet">Price:</label><br>
+    <input type="text" id="priceSet" name="priceSet" th:field="*{price}"><br><br>
+    <label for="currencySet">Currency</label><br>
+    <input type="text" id="currencySet" name="currencySet" th:field="*{currency}"><br><br>
+    <input type="submit" value="Add product">
+</form>
+
 </body>
 </html>

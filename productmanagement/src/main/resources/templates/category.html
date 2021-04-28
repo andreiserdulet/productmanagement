@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+  <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+</head>
+<body>
+<a type="button" th:href="@{/add-category}">Add Category</a>
+<a th:href="@{/deleteById(id=${category.idCategory})}">X</a>
+<a th:href="@{/findById(id=${category.idCategory})}">VIEW</a>
+<table style="width:100%">
+  <tr>
+    <th>id</th>
+    <th>Category </th>
+    <th>Action</th>
+
+  </tr>
+  <tr th:each="category: ${categories}">
+    <td th:text="${category.idCategory}"></td>
+    <td th:text="${category.categoryName}"></td>
+
+  </tr>
+
+</table>
+</body>
+</html>
