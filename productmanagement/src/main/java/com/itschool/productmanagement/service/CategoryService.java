@@ -1,7 +1,6 @@
 package com.itschool.productmanagement.service;
 
 import com.itschool.productmanagement.entities.CategoryModel;
-import com.itschool.productmanagement.entities.ProductModel;
 import com.itschool.productmanagement.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,12 +24,16 @@ public class CategoryService {
 
     }
 
-    public void deleteByIdCategory(int idCategory) {
-        categoryRepository.deleteById(idCategory);
+    public void deleteByIdCategory(int id) {
+        categoryRepository.deleteById(id);
     }
 
-    public CategoryModel findByIdCategory(int idCategory) {
-        Optional<CategoryModel> optionalCategoryModel = categoryRepository.findById(idCategory);
+    public CategoryModel findByIdCategory(int id) {
+        Optional<CategoryModel> optionalCategoryModel = categoryRepository.findById(id);
         return optionalCategoryModel.get();
+    }
+
+    public void edit(CategoryModel editedCategory) {
+        categoryRepository.save(editedCategory);
     }
 }

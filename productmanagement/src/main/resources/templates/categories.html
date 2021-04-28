@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="">
 <head>
     <meta charset="UTF-8">
-    <title>Category</title>
+    <title>Categories</title>
   <style>
 table, th, td {
   border: 1px solid black;
@@ -15,22 +15,30 @@ th, td {
 </style>
 </head>
 <body>
-<a type="button" th:href="@{/add-category}">Add Category</a>
-<a th:href="@{/deleteById(id=${category.idCategory})}">X</a>
-<a th:href="@{/findById(id=${category.idCategory})}">VIEW</a>
+<a  th:href="@{/add-category}">Add Category</a>
+<ul th:each="category: ${categories}">
+  <a th:href="@{/deleteByIdC(id=$(category.id})}">X</a>
+  <a th:href="@{/findByIdC(id=$(category.id})}">view</a>
+  <a th:href="@{/edit-category(id=${category.id})}">EDIT</a>
+
+</ul>
+
+
+
+
 <table style="width:100%">
   <tr>
     <th>id</th>
-    <th>Category </th>
+    <th>Category name</th>
     <th>Action</th>
-
   </tr>
   <tr th:each="category: ${categories}">
-    <td th:text="${category.idCategory}"></td>
+    <td th:text="${category.id}"></td>
     <td th:text="${category.categoryName}"></td>
 
   </tr>
 
 </table>
+
 </body>
 </html>

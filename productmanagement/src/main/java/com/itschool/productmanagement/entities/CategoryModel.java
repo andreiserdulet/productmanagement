@@ -1,23 +1,22 @@
 package com.itschool.productmanagement.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "category")
 public class CategoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategory;
+    private int id;
     private String categoryName;
 
 
     public int getId() {
-        return idCategory;
+        return id;
     }
 
     public void setId(int id) {
-        this.idCategory = id;
+        this.id = id;
     }
 
     public String getCategoryName() {

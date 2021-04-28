@@ -37,15 +37,29 @@ public class CategoryController {
         return "redirect:/category";
     }
 
-    @GetMapping(path = "deleteById")
-    public String deleteByIdCategory(@RequestParam("id") int idCategory) {
-        categoryService.deleteByIdCategory(idCategory);
+    @GetMapping(path = "edit-category")
+    public String viewCategoryPage(@RequestParam int id, Model model) {
+        CategoryModel foundCategory = categoryService.findByIdCategory(id);
+        model.addAttribute("editCategory", foundCategory);
+        return "category-edit";
+    }
+
+    @GetMapping(path = "category-edit")
+    public String editCategory(@ModelAttribute CategoryModel editedCategory) {
+        categoryService.edit(editedCategory);
+        return "redirect:/category";
+    }
+
+    @GetMapping(path = "deleteByIdC")
+    public String deleteByIdCategory(@RequestParam("id") int id) {
+        categoryService.deleteByIdCategory(id);
         return "redirect:/category";
 
     }
-    @GetMapping(path = "findById")
-        public String findByIdCategory(@RequestParam("id") int idCategory, Model model){
-        CategoryModel categoryModel = categoryService.findByIdCategory(idCategory);
+
+    @GetMapping(path = "findByIdC")
+    public String findByIdCategory(@RequestParam("id") int id, Model model) {
+        CategoryModel categoryModel = categoryService.findByIdCategory(id);
         model.addAttribute("foundCategory", categoryModel);
         return "view-category";
     }
