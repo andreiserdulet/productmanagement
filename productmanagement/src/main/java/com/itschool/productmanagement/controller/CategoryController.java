@@ -1,6 +1,7 @@
 package com.itschool.productmanagement.controller;
 
 import com.itschool.productmanagement.entities.CategoryModel;
+import com.itschool.productmanagement.exception.NameException;
 import com.itschool.productmanagement.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,10 +32,17 @@ public class CategoryController {
     }
 
     @GetMapping(path = "category-add")
-    public String addCategory(@ModelAttribute CategoryModel newCategory) {
+    public String addCategory(@ModelAttribute CategoryModel newCategory, Model model) {
         System.out.println("Add category ->" + newCategory.getId() + " " + newCategory.getCategoryName());
-        categoryService.addCategory(newCategory);
-        return "redirect:/category";
+
+        try {
+            categoryService.addCategory(newCategory);
+            return "redirect:/category";
+        } catch (NameException nameException) {
+            model.addAttribute("newCategory", newCategory);
+            model.addAttribute("errorMessageCategory", nameException.getMessage());
+            return "product-add";
+        }
     }
 
     @GetMapping(path = "edit-category")
@@ -45,19 +53,25 @@ public class CategoryController {
     }
 
     @GetMapping(path = "category-edit")
-    public String editCategory(@ModelAttribute CategoryModel editedCategory) {
-        categoryService.edit(editedCategory);
-        return "redirect:/category";
+    public String editCategory(@ModelAttribute CategoryModel editedCategory, Model model) {
+        try {
+            categoryService.edit(editedCategory);
+            return "redirect:/category";
+        } catch (NameException nameException) {
+            model.addAttribute("editCategory", editedCategory);
+            model.addAttribute("errorMessageCategory", nameException.getMessage());
+            return "category-edit";
+        }
     }
 
-    @GetMapping(path = "deleteByIdC")
+    @GetMapping(path = "deleteByIdCategory")
     public String deleteByIdCategory(@RequestParam("id") int id) {
         categoryService.deleteByIdCategory(id);
         return "redirect:/category";
 
     }
 
-    @GetMapping(path = "findByIdC")
+    @GetMapping(path = "findByIdCategory")
     public String findByIdCategory(@RequestParam("id") int id, Model model) {
         CategoryModel categoryModel = categoryService.findByIdCategory(id);
         model.addAttribute("foundCategory", categoryModel);

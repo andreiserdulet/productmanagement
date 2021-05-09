@@ -1,6 +1,8 @@
 package com.itschool.productmanagement.service;
 
 import com.itschool.productmanagement.entities.CategoryModel;
+import com.itschool.productmanagement.exception.DescriptionException;
+import com.itschool.productmanagement.exception.NameException;
 import com.itschool.productmanagement.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,8 +22,14 @@ public class CategoryService {
     }
 
     public void addCategory(CategoryModel categoryModel) {
-        categoryRepository.save(categoryModel);
+        if (categoryModel.getCategoryName().equals("")) {
+            RuntimeException exception = new NameException("The category name is not valid");
+            throw exception;
+        }
+        else {
+            categoryRepository.save(categoryModel);
 
+        }
     }
 
     public void deleteByIdCategory(int id) {
@@ -34,6 +42,12 @@ public class CategoryService {
     }
 
     public void edit(CategoryModel editedCategory) {
-        categoryRepository.save(editedCategory);
+        if (editedCategory.getCategoryName().equals("")) {
+            RuntimeException exception = new NameException("The category name is not valid");
+            throw exception;
+        }
+        else {
+            categoryRepository.save(editedCategory);
+        }
     }
 }
