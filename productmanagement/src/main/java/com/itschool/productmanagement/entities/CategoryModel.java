@@ -10,7 +10,6 @@ public class CategoryModel {
     private int id;
     private String categoryName;
 
-
     public int getId() {
         return id;
     }

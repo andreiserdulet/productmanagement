@@ -1,10 +1,12 @@
 package com.itschool.productmanagement.controller;
 
+import com.itschool.productmanagement.entities.CategoryModel;
 import com.itschool.productmanagement.entities.ProductModel;
 import com.itschool.productmanagement.exception.CurrencyException;
 import com.itschool.productmanagement.exception.DescriptionException;
 import com.itschool.productmanagement.exception.NameException;
 import com.itschool.productmanagement.exception.PriceException;
+import com.itschool.productmanagement.service.CategoryService;
 import com.itschool.productmanagement.service.CurrencyConvertorService;
 import com.itschool.productmanagement.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private CurrencyConvertorService currencyConvertorService;
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping(path = "product")
     public String displayProducts(Model model) {
@@ -34,6 +38,9 @@ public class ProductController {
     @GetMapping(path = "add-product")
     public String viewProductPage(Model model) {
         model.addAttribute("newProduct", new ProductModel());
+        List<CategoryModel> categories = categoryService.displayCategories();
+        model.addAttribute("categories", categories);
+
         return "product-add";
     }
 

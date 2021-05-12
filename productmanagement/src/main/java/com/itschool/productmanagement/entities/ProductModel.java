@@ -14,8 +14,8 @@ public class ProductModel {
     private double price;
     private String currency;
 
-    @ManyToMany
-    private List<CategoryModel> categories;
+    @ManyToOne
+    private CategoryModel categories;
 
     public int getId() {
         return id;
@@ -57,11 +57,11 @@ public class ProductModel {
         this.currency = currency;
     }
 
-    public List<CategoryModel> getCategories() {
+    public CategoryModel getCategories() {
         return categories;
     }
 
-    public void setCategories(List<CategoryModel> categories) {
+    public void setCategories(CategoryModel categories) {
         this.categories = categories;
     }
 }
